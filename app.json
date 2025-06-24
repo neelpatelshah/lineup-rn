@@ -33,6 +33,12 @@
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
         }
+      ],
+      [
+        "expo-font",
+        {
+          "fonts": ["./assets/fonts/TiltWarp.ttf", "./assets/fonts/Gantari.ttf"]
+        }
       ]
     ],
     "experiments": {
