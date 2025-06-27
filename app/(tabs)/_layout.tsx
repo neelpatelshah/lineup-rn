@@ -16,6 +16,7 @@ export default function TabLayout() {
         headerTitleStyle: {
           fontFamily: "TiltWarp",
           fontSize: 36,
+          marginBottom: -4, // what the fuck???
         },
         headerTintColor: Colors.text,
         headerStyle: {
@@ -25,7 +26,7 @@ export default function TabLayout() {
         },
         headerLeft: () => (
           <IconSymbol
-            name="bell.fill"
+            name="bell"
             size={22}
             color={Colors.secondaryText}
             style={{ marginLeft: 20 }}
@@ -33,7 +34,7 @@ export default function TabLayout() {
         ),
         headerRight: () => (
           <IconSymbol
-            name="magnifyingglass"
+            name="search"
             size={22}
             color={Colors.secondaryText}
             style={{ marginRight: 20 }}
@@ -53,7 +54,7 @@ export default function TabLayout() {
         name="explore"
         options={{
           tabBarIcon: ({ color }) => (
-            <IconSymbol size={28} name="globe.americas.fill" color={color} />
+            <IconSymbol size={24} name="globe" color={color} />
           ),
         }}
       />
@@ -61,7 +62,7 @@ export default function TabLayout() {
         name="feed"
         options={{
           tabBarIcon: ({ color }) => (
-            <IconSymbol size={28} name="list.dash" color={color} />
+            <IconSymbol size={24} name="list-unordered" color={color} />
           ),
         }}
       />
@@ -69,7 +70,7 @@ export default function TabLayout() {
         name="index"
         options={{
           tabBarIcon: ({ color }) => (
-            <IconSymbol size={28} name="house.fill" color={color} />
+            <IconSymbol size={24} name="home" color={color} />
           ),
         }}
       />
@@ -77,7 +78,7 @@ export default function TabLayout() {
         name="diary"
         options={{
           tabBarIcon: ({ color }) => (
-            <IconSymbol size={28} name="book.fill" color={color} />
+            <IconSymbol size={24} name="book" color={color} />
           ),
         }}
       />
@@ -86,7 +87,7 @@ export default function TabLayout() {
         options={{
           headerShown: false,
           tabBarIcon: ({ color }) => (
-            <IconSymbol size={28} name="person.fill" color={color} />
+            <IconSymbol size={24} name="person" color={color} />
           ),
         }}
       />

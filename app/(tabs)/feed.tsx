@@ -1,134 +1,141 @@
-import { Image } from "expo-image";
-import { FlatList, Platform, StyleSheet } from "react-native";
+import { ScrollView, StyleSheet } from "react-native";
 
-import { Collapsible } from "@/components/Collapsible";
-import { ExternalLink } from "@/components/ExternalLink";
 import { FeedItem } from "@/components/FeedItem";
-import ParallaxScrollView from "@/components/ParallaxScrollView";
-import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
-import { IconSymbol } from "@/components/ui/IconSymbol";
 
-const feedData = [
-  { id: "1", author: "John Doe", content: "Just setting up my lineup!" },
-  { id: "2", author: "Jane Smith", content: "Excited to share my first post." },
-  { id: "3", author: "Peter Jones", content: "React Native is awesome!" },
+const feed = [
+  {
+    image:
+      "https://www.brooklynpaper.com/wp-content/uploads/2025/05/TIESTO2023_0513_072039-0774-@ChrisLavado.jpg?quality=51&w=1200",
+
+    profilePicUrl: "https://i.pravatar.cc/150?u=a042581f4e29026704d",
+    artist: "Tame Impala",
+    venue: "The Forum",
+    score: 92,
+    username: "neel",
+    date: "2025-05-01T20:00:00Z",
+    review: "Amazing show with great visuals!",
+    friends: [
+      {
+        username: "Alice",
+        profilePicUrl: "https://i.pravatar.cc/150?u=a042581f4e29026704e",
+      },
+      {
+        username: "Bob",
+        profilePicUrl: "https://i.pravatar.cc/150?u=a042581f4e29026704f",
+      },
+    ],
+  },
+  {
+    image:
+      "https://www.brooklynpaper.com/wp-content/uploads/2025/05/TIESTO2023_0513_072039-0774-@ChrisLavado.jpg?quality=51&w=1200",
+
+    profilePicUrl: "https://i.pravatar.cc/150?u=a042581f4e29026704e",
+    artist: "Flume",
+    venue: "Red Rocks",
+    score: 95,
+    username: "john_doe",
+    date: "2025-05-02T20:00:00Z",
+    review: "Flume's set was electrifying! Can't wait for the next one.",
+    friends: [
+      {
+        username: "Charlie",
+        profilePicUrl: "https://i.pravatar.cc/150?u=a042581f4e29026704a",
+      },
+      {
+        username: "Dave",
+        profilePicUrl: "https://i.pravatar.cc/150?u=a042581f4e29026704b",
+      },
+    ],
+  },
+  {
+    image:
+      "https://www.brooklynpaper.com/wp-content/uploads/2025/05/TIESTO2023_0513_072039-0774-@ChrisLavado.jpg?quality=51&w=1200",
+
+    profilePicUrl: "https://i.pravatar.cc/150?u=a042581f4e29026704f",
+    artist: "Odesza",
+    venue: "The Gorge",
+    score: 98,
+    username: "jane_smith",
+    date: "2025-05-03T20:00:00Z",
+    review: "Odesza's performance was out of this world! Loved every moment.",
+    friends: [
+      {
+        username: "Eve",
+        profilePicUrl: "https://i.pravatar.cc/150?u=a042581f4e29026704c",
+      },
+      {
+        username: "Frank",
+        profilePicUrl: "https://i.pravatar.cc/150?u=a042581f4e29026704d",
+      },
+    ],
+  },
+  {
+    image:
+      "https://www.brooklynpaper.com/wp-content/uploads/2025/05/TIESTO2023_0513_072039-0774-@ChrisLavado.jpg?quality=51&w=1200",
+
+    profilePicUrl: "https://i.pravatar.cc/150?u=a042581f4e29026704a",
+    artist: "Fred again..",
+    venue: "Madison Square Garden",
+    score: 99,
+    username: "music_lover",
+    date: "2025-05-04T20:00:00Z",
+    review: "Fred again.. blew my mind! The energy was unreal.",
+    friends: [
+      {
+        username: "Grace",
+        profilePicUrl: "https://i.pravatar.cc/150?u=a042581f4e29026704a",
+      },
+      {
+        username: "Hank",
+        profilePicUrl: "https://i.pravatar.cc/150?u=a042581f4e29026704b",
+      },
+    ],
+  },
+  {
+    image:
+      "https://www.brooklynpaper.com/wp-content/uploads/2025/05/TIESTO2023_0513_072039-0774-@ChrisLavado.jpg?quality=51&w=1200",
+
+    profilePicUrl: "https://i.pravatar.cc/150?u=a042581f4e29026704b",
+    artist: "Skrillex",
+    venue: "Brooklyn Mirage",
+    score: 96,
+    username: "dj_fanatic",
+    date: "2025-05-05T20:00:00Z",
+    review: "Skrillex's set was a masterpiece! The crowd was electric.",
+    friends: [
+      {
+        username: "Ivy",
+        profilePicUrl: "https://i.pravatar.cc/150?u=a042581f4e29026704c",
+      },
+      {
+        username: "Jack",
+        profilePicUrl: "https://i.pravatar.cc/150?u=a042581f4e29026704d",
+      },
+    ],
+  },
 ];
 
 export default function TabTwoScreen() {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: "#D0D0D0", dark: "#353636" }}
-      headerImage={
-        <IconSymbol
-          size={310}
-          color="#808080"
-          name="chevron.left.forwardslash.chevron.right"
-          style={styles.headerImage}
-        />
-      }
-    >
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Explore</ThemedText>
-      </ThemedView>
-      <ThemedText>
-        This app includes example code to help you get started.
-      </ThemedText>
-      <Collapsible title="File-based routing">
-        <ThemedText>
-          This app has two screens:{" "}
-          <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText>{" "}
-          and{" "}
-          <ThemedText type="defaultSemiBold">app/(tabs)/explore.tsx</ThemedText>
-        </ThemedText>
-        <ThemedText>
-          The layout file in{" "}
-          <ThemedText type="defaultSemiBold">app/(tabs)/_layout.tsx</ThemedText>{" "}
-          sets up the tab navigator.
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/router/introduction">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Android, iOS, and web support">
-        <ThemedText>
-          You can open this project on Android, iOS, and the web. To open the
-          web version, press <ThemedText type="defaultSemiBold">w</ThemedText>{" "}
-          in the terminal running this project.
-        </ThemedText>
-      </Collapsible>
-      <Collapsible title="Images">
-        <ThemedText>
-          For static images, you can use the{" "}
-          <ThemedText type="defaultSemiBold">@2x</ThemedText> and{" "}
-          <ThemedText type="defaultSemiBold">@3x</ThemedText> suffixes to
-          provide files for different screen densities
-        </ThemedText>
-        <Image
-          source={require("@/assets/images/react-logo.png")}
-          style={{ alignSelf: "center" }}
-        />
-        <ExternalLink href="https://reactnative.dev/docs/images">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Custom fonts">
-        <ThemedText>
-          Open <ThemedText type="defaultSemiBold">app/_layout.tsx</ThemedText>{" "}
-          to see how to load{" "}
-          <ThemedText style={{ fontFamily: "SpaceMono" }}>
-            custom fonts such as this one.
-          </ThemedText>
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/versions/latest/sdk/font">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Light and dark mode components">
-        <ThemedText>
-          This template has light and dark mode support. The{" "}
-          <ThemedText type="defaultSemiBold">useColorScheme()</ThemedText> hook
-          lets you inspect what the user&apos;s current color scheme is, and so
-          you can adjust UI colors accordingly.
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/develop/user-interface/color-themes/">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Animations">
-        <ThemedText>
-          This template includes an example of an animated component. The{" "}
-          <ThemedText type="defaultSemiBold">
-            components/HelloWave.tsx
-          </ThemedText>{" "}
-          component uses the powerful{" "}
-          <ThemedText type="defaultSemiBold">
-            react-native-reanimated
-          </ThemedText>{" "}
-          library to create a waving hand animation.
-        </ThemedText>
-        {Platform.select({
-          ios: (
-            <ThemedText>
-              The{" "}
-              <ThemedText type="defaultSemiBold">
-                components/ParallaxScrollView.tsx
-              </ThemedText>{" "}
-              component provides a parallax effect for the header image.
-            </ThemedText>
-          ),
-        })}
-      </Collapsible>
-      <ThemedView style={styles.feedContainer}>
-        <FlatList
-          data={feedData}
-          renderItem={({ item }) => (
-            <FeedItem author={item.author} content={item.content} />
-          )}
-          keyExtractor={(item) => item.id}
-        />
-      </ThemedView>
-    </ParallaxScrollView>
+    <ThemedView>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        {feed.map((item, index) => (
+          <FeedItem
+            key={index}
+            username={item.username}
+            profilePicUrl={item.profilePicUrl}
+            artist={item.artist}
+            venue={item.venue}
+            score={item.score}
+            date={item.date}
+            review={item.review}
+            friends={item.friends}
+            image={item.image}
+          />
+        ))}
+      </ScrollView>
+    </ThemedView>
   );
 }
 
