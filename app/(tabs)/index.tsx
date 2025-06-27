@@ -1,3 +1,4 @@
+import { Link, useRouter } from "expo-router";
 import {
   Image,
   ScrollView,
@@ -77,6 +78,7 @@ const friendFeed = [
 ];
 
 export default function HomeScreen() {
+  const router = useRouter();
   return (
     <ThemedView style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -94,13 +96,21 @@ export default function HomeScreen() {
         </View>
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           {carouselItems.map((item) => (
-            <View key={item.id} style={styles.carouselItem}>
-              <Image source={{ uri: item.image }} style={styles.image} />
-              <View style={styles.textContainer}>
-                <ThemedText type="subtitle">{item.text}</ThemedText>
-                <ThemedText type="default">{item.subtext}</ThemedText>
-              </View>
-            </View>
+            <Link
+              key={item.id}
+              href={{ pathname: "../event/[id]", params: { id: item.id } }}
+              asChild
+            >
+              <TouchableOpacity>
+                <View key={item.id} style={styles.carouselItem}>
+                  <Image source={{ uri: item.image }} style={styles.image} />
+                  <View style={styles.textContainer}>
+                    <ThemedText type="subtitle">{item.text}</ThemedText>
+                    <ThemedText type="default">{item.subtext}</ThemedText>
+                  </View>
+                </View>
+              </TouchableOpacity>
+            </Link>
           ))}
         </ScrollView>
         <ThemedText type="capsTitle" style={{ padding: 8 }}>
@@ -117,6 +127,12 @@ export default function HomeScreen() {
           />
         ))}
       </ScrollView>
+      <TouchableOpacity
+        style={styles.createButton}
+        onPress={() => router.navigate("../create-entry")}
+      >
+        <IconSymbol name="plus" size={24} color="#fff" />
+      </TouchableOpacity>
     </ThemedView>
   );
 }
@@ -142,5 +158,21 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     padding: 8,
+  },
+  createButton: {
+    position: "absolute",
+    bottom: 20,
+    right: 20,
+    backgroundColor: Colors.tint,
+    width: 56,
+    height: 56,
+    borderRadius: 28,
+    justifyContent: "center",
+    alignItems: "center",
+    elevation: 8,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
   },
 });

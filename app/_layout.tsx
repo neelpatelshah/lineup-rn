@@ -19,6 +19,17 @@ export default function RootLayout() {
     <ThemeProvider value={DarkTheme}>
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen
+          name="create-entry"
+          options={{
+            headerTitle: "Create Entry",
+            headerTitleAlign: "center",
+            headerTitleStyle: {
+              fontFamily: "TiltWarp",
+              fontSize: 36,
+            },
+          }}
+        />
         <Stack.Screen name="+not-found" />
       </Stack>
       <StatusBar style="auto" />

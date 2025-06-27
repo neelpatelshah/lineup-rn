@@ -4,6 +4,8 @@ import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 import { IconSymbol } from "@/components/ui/IconSymbol";
 import { Colors } from "@/constants/Colors";
+import api from "@/lib/api/client";
+import { useEffect, useState } from "react";
 import { ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
 
 const eventFeed = [
@@ -61,8 +63,23 @@ const eventFeed = [
 ];
 
 export default function ExploreScreen() {
+  const [eventLength, setEventLength] = useState(0);
+
+  useEffect(() => {
+    console.log("ExploreScreen mounted");
+    getEvents();
+  }, []);
+
+  const getEvents = async () => {
+    const events = await api.getAllEvents();
+    setEventLength(events.length);
+  };
+
   return (
     <ThemedView style={styles.container}>
+      <View style={{ height: 40 }}>
+        <ThemedText>THIS MANY EVENTS FOUND: {eventLength}</ThemedText>
+      </View>
       <View
         style={{
           display: "flex",

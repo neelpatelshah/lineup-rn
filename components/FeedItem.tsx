@@ -1,7 +1,8 @@
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 import { Image } from "expo-image";
-import { Dimensions, View } from "react-native";
+import { Link } from "expo-router";
+import { Dimensions, TouchableOpacity, View } from "react-native";
 import Score from "./score";
 
 type Friend = {
@@ -57,7 +58,14 @@ export function FeedItem({
           <ThemedText style={{ fontWeight: "bold" }}>{username}</ThemedText>
         </View>
         <View style={{ display: "flex", alignItems: "flex-end" }}>
-          <ThemedText style={{ fontWeight: "bold" }}>{artist}</ThemedText>
+          <Link
+            href={{ pathname: "../event/[id]", params: { id: "1" } }}
+            asChild
+          >
+            <TouchableOpacity>
+              <ThemedText style={{ fontWeight: "bold" }}>{artist}</ThemedText>
+            </TouchableOpacity>
+          </Link>
           <ThemedText style={{ color: "#808080" }}>@{venue}</ThemedText>
         </View>
       </View>

@@ -1,9 +1,10 @@
-import { Tabs } from "expo-router";
+import { Link, Tabs } from "expo-router";
 import React from "react";
 
 import { HapticTab } from "@/components/HapticTab";
 import { IconSymbol } from "@/components/ui/IconSymbol";
 import { Colors } from "@/constants/Colors";
+import { TouchableOpacity } from "react-native";
 
 export default function TabLayout() {
   return (
@@ -33,12 +34,16 @@ export default function TabLayout() {
           />
         ),
         headerRight: () => (
-          <IconSymbol
-            name="search"
-            size={22}
-            color={Colors.secondaryText}
-            style={{ marginRight: 20 }}
-          />
+          <Link href={{ pathname: "../search" }} asChild>
+            <TouchableOpacity>
+              <IconSymbol
+                name="search"
+                size={22}
+                color={Colors.secondaryText}
+                style={{ marginRight: 20 }}
+              />
+            </TouchableOpacity>
+          </Link>
         ),
         tabBarButton: HapticTab,
         tabBarShowLabel: false,
